@@ -1,0 +1,18 @@
+from collections import Counter
+
+def earliest_step(letters):
+    target = Counter("ITHACA")  # {'I':1, 'T':1, 'H':1, 'A':2, 'C':1}
+    collected = Counter()
+
+    for step, letter in enumerate(letters, start=1):
+        collected[letter.upper()] += 1
+
+        if all(collected[ch] >= cnt for ch, cnt in target.items()):
+            return step
+
+    return -1
+
+
+if __name__ == "__main__":
+    raw = input().split()
+    print(earliest_step(raw))
